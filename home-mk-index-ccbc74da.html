@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK体育 · 日常查询与对照指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f2f4f6;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid #dce2e8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+            padding: 2rem 2.2rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .card + .card {
+            margin-top: 1.8rem;
+        }
+
+        /* hero */
+        .hero {
+            text-align: center;
+            padding: 3.5rem 2.2rem 3rem;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border-bottom: 1px solid #e3e9f0;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b1a2b;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.15rem;
+            color: #4a5c72;
+            max-width: 680px;
+            margin: 0.5rem auto 1.2rem;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #e4eaf1;
+            padding: 0.3rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: #1f3a57;
+            border: 1px solid #cdd6e0;
+        }
+
+        /* 标题样式 */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            border-left: 5px solid #3e6b9c;
+            padding-left: 1rem;
+            margin-bottom: 1.6rem;
+            color: #0d1f31;
+        }
+
+        .section-title-light {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #1d3349;
+        }
+
+        /* 优势网格 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .grid-item {
+            background: #f9fbfd;
+            border-radius: 16px;
+            border: 1px solid #dce2ea;
+            padding: 1.5rem 1.2rem;
+            transition: all 0.15s ease;
+        }
+
+        .grid-item:hover {
+            background: #ffffff;
+            border-color: #b3c5d9;
+        }
+
+        .grid-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #15304d;
+        }
+
+        .grid-item p {
+            font-size: 0.95rem;
+            color: #2b4058;
+        }
+
+        /* 说明区 双栏 */
+        .two-col {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .col {
+            flex: 1 1 260px;
+        }
+
+        .col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .col li {
+            padding: 0.5rem 0 0.5rem 1.6rem;
+            position: relative;
+            border-bottom: 1px solid #eaeef3;
+            font-size: 0.97rem;
+        }
+
+        .col li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #3e6b9c;
+            font-weight: bold;
+            font-size: 1.4rem;
+            line-height: 1.2;
+        }
+
+        .col .note {
+            background: #f0f4fa;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-top: 1rem;
+            font-size: 0.92rem;
+            border: 1px solid #dbe2ec;
+            color: #1b344b;
+        }
+
+        /* FAQ 摘要 */
+        .faq-list {
+            margin-top: 0.5rem;
+        }
+
+        .faq-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 550;
+            color: #10273d;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .faq-q::before {
+            content: "Q";
+            background: #dce5ef;
+            color: #1f3c5a;
+            font-weight: 600;
+            font-size: 0.8rem;
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .faq-a {
+            margin-top: 0.4rem;
+            padding-left: 2.1rem;
+            color: #2d445d;
+            font-size: 0.95rem;
+        }
+
+        .faq-a a {
+            color: #1f5191;
+            text-decoration: none;
+            font-weight: 450;
+            border-bottom: 1px dotted #a7b9ce;
+        }
+
+        .faq-a a:hover {
+            border-bottom: 1px solid #1f5191;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #456177;
+            border-top: 1px solid #d8e0e9;
+            padding-top: 2rem;
+        }
+
+        .footer-links p {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: #1f5191;
+            text-decoration: none;
+            border-bottom: 1px solid #b7c9de;
+        }
+
+        .footer-links a:hover {
+            border-bottom: 1px solid #0a2f54;
+        }
+
+        .sep {
+            margin: 0 0.8rem;
+            color: #9aafc4;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .card {
+                padding: 1.6rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .two-col {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- hero -->
+    <div class="card hero">
+        <div class="tagline">日常对照 · 延伸阅读</div>
+        <h1>MK体育 · 让查询更顺手</h1>
+        <p class="sub">无论是快速核对赛事信息、翻阅规则演变，还是随手收藏感兴趣的内容，这里都像一本翻不厌的手边书。</p>
+        <p style="font-size:0.95rem; color: #3b5775; margin-top: 0.8rem;">不复杂，不浮躁，只提供安静的参考空间。</p>
+    </div>
+
+    <!-- 优势区 -->
+    <div class="card">
+        <h2 class="section-title">为什么用它作为日常参考？</h2>
+        <div class="grid-3">
+            <div class="grid-item">
+                <h3>📋 清单式浏览</h3>
+                <p>页面结构偏平，适合快速扫读，不用层层跳转就能找到常见条目。</p>
+            </div>
+            <div class="grid-item">
+                <h3>🔍 对照友好</h3>
+                <p>术语、数据、版本说明并列呈现，方便边看边比照，省去反复切换。</p>
+            </div>
+            <div class="grid-item">
+                <h3>📎 延伸阅读</h3>
+                <p>部分条目附带短注或参考链接，适合顺着线索深入了解，而不只是浅尝辄止。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 说明区：使用场景 + 提示 -->
+    <div class="card">
+        <h2 class="section-title">适合这些日常场景</h2>
+        <div class="two-col">
+            <div class="col">
+                <ul>
+                    <li>随手查某条规则的历史版本</li>
+                    <li>对照不同赛事体系的名称差异</li>
+                    <li>整理笔记时确认数字和表述</li>
+                    <li>浏览相关解读时做快速交叉参考</li>
+                </ul>
+                <div class="note">
+                    💡 小提示：页面内容偏向资料性，适合搭配其他来源一起看，形成自己的理解。
+                </div>
+            </div>
+            <div class="col">
+                <ul>
+                    <li>偶尔需要确认某个术语的简写全称</li>
+                    <li>写稿、做表前核对基础数据</li>
+                    <li>周末翻阅感兴趣的运动发展简史</li>
+                    <li>推荐给朋友作为入门参考索引</li>
+                </ul>
+                <div class="note">
+                    📌 所有信息均来自公开可查的内容，保持更新但不保证实时性，关键信息建议二次验证。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="card">
+        <h2 class="section-title">常见疑问 · 简短摘要</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-q">这里的内容和官方数据一致吗？</div>
+                <div class="faq-a">尽力采用可靠来源，但运动规则和数据会不断修订，建议以最新官方版本为准。你可以在 <a href="https://home--mk.com">MK体育</a> 上找到许多条目的原始出处链接，方便对照。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">是否收录了所有运动项目？</div>
+                <div class="faq-a">覆盖主流项目及部分冷门项目的基础内容，但并非百科全集。如果你有特别想了解的项目，或许可以通过站内搜索发现相关笔记。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">页面上的链接会过期吗？</div>
+                <div class="faq-a">会定期检查并更新失效链接，但网络资源变化较快，遇到打不开的情况可以回到站内查找存档或备用地址。部分延伸阅读会直接跳转到 <a href="https://home--mk.com">MK体育</a> 的对应专页。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+        <p>基于日常查询与对照的需要，保持简洁、不堆砌。</p>
+        <p>
+            <a href="https://home--mk.com">MK体育</a>
+            <span class="sep">·</span>
+            <span>阅读参考</span>
+            <span class="sep">·</span>
+            <span>内容索引</span>
+            <span class="sep">·</span>
+            <span>关于本站</span>
+        </p>
+        <p style="margin-top: 0.8rem; font-size: 0.8rem; color: #5f7893;">—— 不设限，不盲从，只做安静的参考页 ——</p>
+    </div>
+
+</div>
+</body>
+</html>
